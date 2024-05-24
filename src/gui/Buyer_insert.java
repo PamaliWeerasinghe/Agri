@@ -12,9 +12,14 @@ public class Buyer_insert extends javax.swing.JFrame {
     public Buyer_insert() {
         initComponents();
         DefaultTableModel dtm=(DefaultTableModel) buyer_table.getModel();
-        buyers.loadBuyers(dtm);
+        buyers.loadBuyers(dtm,"SELECT * FROM `buyer` WHERE `status_id`='1'");
     }
-
+    public void reset(){
+        buyer_name.setText("");
+        buyer_mobile.setText("");
+        buyer_email.setText("");
+        buyer_address.setText("");
+    }
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -199,6 +204,11 @@ public class Buyer_insert extends javax.swing.JFrame {
                 buyer_textMouseClicked(evt);
             }
         });
+        buyer_text.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buyer_textKeyReleased(evt);
+            }
+        });
         jPanel7.add(buyer_text);
         buyer_text.setBounds(110, 10, 370, 40);
 
@@ -335,11 +345,11 @@ public class Buyer_insert extends javax.swing.JFrame {
         String mobile=buyer_mobile.getText();
         String address =buyer_address.getText();
         String email=buyer_email.getText();
-        String unit_price=purchaseOrder_unitPrice.getText();
+        
 
-        addItems.addItemToInvoice(orderID,productID,qty,unit_price);
-        DefaultTableModel dtm2=(DefaultTableModel) purchaseOrder_invoiceTable.getModel();
-        addItems.reloadInvoiceTable(orderID, dtm2);
+        buyers.insertBuyer(name,mobile,email,address);
+        DefaultTableModel dtm2=(DefaultTableModel) buyer_table.getModel();
+        buyers.loadBuyers(dtm2,"SELECT * FROM `buyer` WHERE `status_id`='1'");
         reset();
 
     }//GEN-LAST:event_buyer_insertActionPerformed
@@ -368,22 +378,20 @@ public class Buyer_insert extends javax.swing.JFrame {
     }//GEN-LAST:event_buyer_textMouseClicked
 
     private void buyer_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyer_searchActionPerformed
-
+        String text=buyer_text.getText();
+        DefaultTableModel dtm2=(DefaultTableModel) buyer_table.getModel();
+        buyers.loadBuyers(dtm2,"SELECT * FROM `buyer` WHERE `status_id`='1' AND `name`='"+text+"'");
     }//GEN-LAST:event_buyer_searchActionPerformed
 
     private void buyer_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyer_tableMouseClicked
-        int row = buyer_table.getSelectedRow();
-        orderID=(int) buyer_table.getValueAt(row,0);
-        Object o1 = buyer_table.getValueAt(row, 0);
-        String s1 = String.valueOf(o1);
-        orderDelete_ID.setText(s1);
 
-        Object o2 = buyer_table.getValueAt(row, 1);
-        String s2 = String.valueOf(o2);
-        orderDelete_date.setText(s2);
-
-        jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_buyer_tableMouseClicked
+
+    private void buyer_textKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buyer_textKeyReleased
+        String text=buyer_text.getText();
+        DefaultTableModel dtm2=(DefaultTableModel) buyer_table.getModel();
+        buyers.loadBuyers(dtm2,"SELECT * FROM `buyer` WHERE `status_id`='1' AND `name` LIKE '"+text+"%'");
+    }//GEN-LAST:event_buyer_textKeyReleased
 
     /**
      * @param args the command line arguments
