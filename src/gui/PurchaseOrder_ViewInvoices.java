@@ -1,14 +1,22 @@
 package gui;
 import gui.output.SelectError;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 import model.addItemsModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
     public static final addItemsModel viewItems=new addItemsModel();
-    public static int invoice_id;
+    public static String invoice_id=" 1 ";
     public PurchaseOrder_ViewInvoices() {
         initComponents();
         DefaultTableModel dtm =(DefaultTableModel) orderView_table.getModel();
@@ -38,8 +46,8 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
                 cost=qty*unit_price;
                 totalCost=totalCost+cost;
                 v.add(rs.getInt("order_ordSup_id"));
-                v.add(rs.getString("cate_name"));
                 v.add(rs.getString("title"));
+                v.add(rs.getString("name"));
                 v.add(rs.getInt("qty"));
                 v.add(rs.getDouble("unit_price"));
                 v.add(cost);
@@ -71,8 +79,8 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
                 cost=qty*unit_price;
                 totalCost=totalCost+cost;
                 v.add(rs.getInt("order_ordSup_id"));
-                v.add(rs.getString("cate_name"));
                 v.add(rs.getString("title"));
+                v.add(rs.getString("name"));
                 v.add(rs.getInt("qty"));
                 v.add(rs.getDouble("unit_price"));
                 v.add(cost);
@@ -103,6 +111,7 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         viewItems_totalAmount = new javax.swing.JLabel();
         deleteItems_done = new javax.swing.JButton();
+        viewItems_printInvoice = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         orderView_table = new javax.swing.JTable();
@@ -217,6 +226,21 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
             }
         });
 
+        viewItems_printInvoice.setBackground(new java.awt.Color(240, 209, 167));
+        viewItems_printInvoice.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
+        viewItems_printInvoice.setForeground(new java.awt.Color(51, 51, 51));
+        viewItems_printInvoice.setText("PRINT INVOICE");
+        viewItems_printInvoice.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(184, 156, 118)));
+        viewItems_printInvoice.setContentAreaFilled(false);
+        viewItems_printInvoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viewItems_printInvoice.setFocusPainted(false);
+        viewItems_printInvoice.setOpaque(true);
+        viewItems_printInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewItems_printInvoiceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -231,6 +255,8 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(viewItems_totalAmount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewItems_printInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(deleteItems_done, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -243,7 +269,8 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(viewItems_totalAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteItems_done, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(deleteItems_done, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(viewItems_printInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
@@ -372,6 +399,7 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
 
     private void orderView_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderView_tableMouseClicked
         int row = orderView_table.getSelectedRow();
+        invoice_id=orderView_table.getValueAt(row,0).toString();
         String orderID=orderView_table.getValueAt(row,0).toString();
         //Object o1 = orderView_table.getValueAt(row, 0);
         //String s1 = String.valueOf(o1);
@@ -400,6 +428,25 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
     private void itemView_tableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemView_tableMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_itemView_tableMouseEntered
+
+    private void viewItems_printInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItems_printInvoiceActionPerformed
+        //print report
+        String path="src/reports/invoice.jasper";
+        HashMap<String,Object> parameters=new HashMap<>();
+        parameters.put("Parameter1",invoice_id);
+        parameters.put("Parameter2",ViewItems_totalProducts.getText());
+        parameters.put("Parameter3",viewItems_totalAmount.getText());
+        
+        JRTableModelDataSource dataSource=new JRTableModelDataSource(itemView_table.getModel());
+        try {
+            JasperPrint jasperPrint=JasperFillManager.fillReport(path, parameters,dataSource);
+            JasperViewer.viewReport(jasperPrint);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+    }//GEN-LAST:event_viewItems_printInvoiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -453,6 +500,7 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable orderView_table;
+    private javax.swing.JButton viewItems_printInvoice;
     public javax.swing.JLabel viewItems_totalAmount;
     // End of variables declaration//GEN-END:variables
 }

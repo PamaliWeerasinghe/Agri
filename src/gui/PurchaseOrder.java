@@ -3,6 +3,7 @@ package gui;
 import model.orderModel;
 import gui.output.SelectError;
 import java.awt.Color;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -346,14 +347,20 @@ public class PurchaseOrder extends javax.swing.JFrame {
   
                 }
             }else{
-                try {
-                    MySQL.execute("INSERT INTO `invoice`(`orderDate`,`status_id`) VALUES('"+orderDate+"','1')");
-                   
-                    
-                } catch (Exception e) {
+                try{
+                int oid=Integer.parseInt(orderId);
+                    ResultSet rs=MySQL.execute("SELECT * FROM `invoice` WHERE `ordSup_id`='"+oid+"'");
+                    if(rs.next()){
+                        SelectError categoryExists=new SelectError();
+                        categoryExists.setText("Order ID already exists!");
+                        categoryExists.setVisible(true);
+                    }else{
+                    MySQL.execute("INSERT INTO `invoice`(`ordSup_id`,`orderDate`,`status_id`) VALUES('"+oid+"','"+orderDate+"','1')");
+                    }
+                }catch(Exception e){
                     e.printStackTrace();
-  
                 }
+                
             }
             DefaultTableModel model =(DefaultTableModel) purchaseOrder_table.getModel();
             o_model.loadOrderTable(model);

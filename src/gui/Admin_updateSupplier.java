@@ -1,14 +1,21 @@
 package gui;
 
 import static gui.Admin_addSupplier.s_model;
+import static gui.PurchaseOrder_ViewInvoices.invoice_id;
 import static gui.SupervisorViewCrops.selectedRowId;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class Admin_updateSupplier extends javax.swing.JFrame {
     public static int selectedRowId,sup_id;
@@ -63,6 +70,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         supplierUpdate_title = new javax.swing.JTextField();
+        supplierUpdate_viewReport = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -164,6 +172,28 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
             }
         });
 
+        supplierUpdate_viewReport.setBackground(new java.awt.Color(255, 246, 207));
+        supplierUpdate_viewReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        supplierUpdate_viewReport.setText("VIEW SUPPLIER REPORT");
+        supplierUpdate_viewReport.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 102, 0)));
+        supplierUpdate_viewReport.setContentAreaFilled(false);
+        supplierUpdate_viewReport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        supplierUpdate_viewReport.setFocusPainted(false);
+        supplierUpdate_viewReport.setOpaque(true);
+        supplierUpdate_viewReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                supplierUpdate_viewReportMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                supplierUpdate_viewReportMouseExited(evt);
+            }
+        });
+        supplierUpdate_viewReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supplierUpdate_viewReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addYield_panel1Layout = new javax.swing.GroupLayout(addYield_panel1);
         addYield_panel1.setLayout(addYield_panel1Layout);
         addYield_panel1Layout.setHorizontalGroup(
@@ -171,8 +201,14 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
             .addGroup(addYield_panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addYield_panel1Layout.createSequentialGroup()
+                        .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
+                        .addGap(0, 108, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addYield_panel1Layout.createSequentialGroup()
                         .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(supplierUpdate_viewReport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(supplierUpdate_title, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addYield_panel1Layout.createSequentialGroup()
                                 .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,12 +221,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
                             .addComponent(supplierUpdate_address, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(supplierUpdate_mobile, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(supplierUpdate_name))
-                        .addContainerGap())
-                    .addGroup(addYield_panel1Layout.createSequentialGroup()
-                        .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addGap(0, 108, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         addYield_panel1Layout.setVerticalGroup(
             addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,9 +246,11 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(supplierUpdate_title, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addGap(32, 32, 32)
+                .addComponent(supplierUpdate_viewReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(supplierUpdate_updtBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -536,6 +569,31 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateSupplier_tableMouseClicked
 
+    private void supplierUpdate_viewReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierUpdate_viewReportMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierUpdate_viewReportMouseEntered
+
+    private void supplierUpdate_viewReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierUpdate_viewReportMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierUpdate_viewReportMouseExited
+
+    private void supplierUpdate_viewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierUpdate_viewReportActionPerformed
+       String path="src/reports/supplier.jasper";
+        HashMap<String,Object> parameters=new HashMap<>();
+        //String supID=String.valueOf(sup_id);
+        //parameters.put("Parameter1",supID);
+        //parameters.put("Parameter2",ViewItems_totalProducts.getText());
+        //parameters.put("Parameter3",viewItems_totalAmount.getText());
+        
+        JRTableModelDataSource dataSource=new JRTableModelDataSource(updateSupplier_table.getModel());
+        try {
+            JasperPrint jasperPrint=JasperFillManager.fillReport(path, parameters,dataSource);
+            JasperViewer.viewReport(jasperPrint);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_supplierUpdate_viewReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -592,6 +650,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
     private javax.swing.JButton supplierUpdate_searchBtn;
     private javax.swing.JTextField supplierUpdate_title;
     private javax.swing.JButton supplierUpdate_updtBtn;
+    private javax.swing.JButton supplierUpdate_viewReport;
     private javax.swing.JTable updateSupplier_table;
     // End of variables declaration//GEN-END:variables
 }
