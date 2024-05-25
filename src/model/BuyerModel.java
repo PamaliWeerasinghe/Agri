@@ -61,6 +61,61 @@ public class BuyerModel {
         }
         
         }
+
+    public void updateBuyer(String id, String name, String mobile, String email, String address) {
+        if(name.isEmpty()){
+            SelectError categoryExists=new SelectError();
+            categoryExists.setText("Buyer name is empty!");
+            categoryExists.setVisible(true);
+        }else if(mobile.isEmpty()){
+            SelectError categoryExists=new SelectError();
+            categoryExists.setText("Mobile cannot be empty!");
+            categoryExists.setVisible(true);
+        }else if(address.isEmpty()){
+            SelectError categoryExists=new SelectError();
+            categoryExists.setText("Address is empty!");
+            categoryExists.setVisible(true);
+        }else if(email.isEmpty()){
+            SelectError categoryExists=new SelectError();
+            categoryExists.setText("Insert the buyer email !");
+            categoryExists.setVisible(true);
+        }else{
+            try {
+                ResultSet rs= MySQL.execute("SELECT * FROM `buyer` WHERE "
+                        + "`name`='"+name+"' AND `mobile`='"+mobile+"' AND `email`='"+email+"' AND `address`='"+address+"'");
+                if(rs.next()){
+                    SelectError categoryExists=new SelectError();
+                    categoryExists.setText("Buyer already exists!");
+                    categoryExists.setVisible(true);
+                }else{
+                    MySQL.execute("UPDATE `buyer` SET `name`='"+name+"',`mobile`='"+mobile+"',`email`='"+email+"',`address`='"+address+"'"
+                            + "WHERE `buyer_id`='"+id+"'");
+                    
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        
+        
+        }
+        
+        
+    }
+
+    public void deleteBuyer(String id) {
+        try {
+            ResultSet rs=MySQL.execute("SELECT * FROM `buyer` WHERE `buyer_id`='2' AND `status_id`='2'");
+            if(rs.next()){
+                    SelectError categoryExists=new SelectError();
+                    categoryExists.setText("Buyer already removed!");
+                    categoryExists.setVisible(true);
+            }else{
+                    MySQL.execute("UPDATE `buyer` SET `status_id`='2' WHERE `buyer_id`='"+id+"'");
+            }
+        } catch (Exception e) {
+        }
+                   
+    }
         
         
     

@@ -18,6 +18,7 @@ public class orderModel {
                 dfm.addRow(v);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         
         
