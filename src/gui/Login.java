@@ -2,6 +2,7 @@
 package gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import gui.output.SelectError;
 import gui.output.error;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import model.UserBean;
 public class Login extends javax.swing.JFrame {
     public static Dashboard dashboard=new Dashboard();
     public static UserBean userBean=new UserBean();
+    public static int user_type_id;
    
     public Login() {
         
@@ -38,16 +40,18 @@ public class Login extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         SupervisorUsername = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         SupervisorPassword = new javax.swing.JPasswordField();
         SupervisorSignInBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        jPanel1.setAlignmentX(0.0F);
+        jPanel1.setAlignmentY(0.0F);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,20 +72,43 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText(" A G R I ");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 70));
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 0));
+        jPanel3.setBackground(new java.awt.Color(213, 168, 127));
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(32, 15, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("USERNAME");
 
-        SupervisorUsername.setText(" ");
+        SupervisorUsername.setBackground(new java.awt.Color(213, 168, 127));
+        SupervisorUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SupervisorUsername.setForeground(new java.awt.Color(51, 0, 0));
+        SupervisorUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(25, 0, 0)));
+        SupervisorUsername.setCaretColor(new java.awt.Color(255, 255, 255));
+        SupervisorUsername.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        jLabel4.setText("PASSWORD");
+        SupervisorPassword.setBackground(new java.awt.Color(213, 168, 127));
+        SupervisorPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SupervisorPassword.setForeground(new java.awt.Color(51, 0, 0));
+        SupervisorPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(25, 0, 0)));
+        SupervisorPassword.setCaretColor(new java.awt.Color(255, 255, 255));
 
+        SupervisorSignInBtn.setBackground(new java.awt.Color(244, 236, 222));
+        SupervisorSignInBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SupervisorSignInBtn.setForeground(new java.awt.Color(51, 51, 51));
         SupervisorSignInBtn.setText("SIGN IN");
+        SupervisorSignInBtn.setBorder(null);
+        SupervisorSignInBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SupervisorSignInBtn.setFocusPainted(false);
         SupervisorSignInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SupervisorSignInBtnActionPerformed(evt);
             }
         });
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(32, 15, 0));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setText("PASSWORD");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -90,12 +117,12 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel3)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(SupervisorUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                         .addComponent(SupervisorPassword))
-                    .addComponent(SupervisorSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SupervisorSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(151, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -105,13 +132,13 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(SupervisorUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(jLabel4)
-                .addGap(29, 29, 29)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SupervisorPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addComponent(SupervisorSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addGap(81, 81, 81)
+                .addComponent(SupervisorSignInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,7 +165,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1017, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,6 +190,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SupervisorSignInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupervisorSignInBtnActionPerformed
@@ -170,11 +198,16 @@ public class Login extends javax.swing.JFrame {
         String password=String.valueOf(SupervisorPassword.getPassword());
         
         if(username.isEmpty()){
-              JOptionPane.showMessageDialog(this, "Please enter your username", "Warning",JOptionPane.WARNING_MESSAGE);
-            
+              //JOptionPane.showMessageDialog(this, "Please enter your username", "Warning",JOptionPane.WARNING_MESSAGE);
+            SelectError categoryExists=new SelectError();
+            categoryExists.setText("Please Enter Your Username");
+            categoryExists.setVisible(true);
+        
         }else if(password.isEmpty()){
-             JOptionPane.showMessageDialog(this, "Please enter your password", "Warning",JOptionPane.WARNING_MESSAGE);
-            
+             //JOptionPane.showMessageDialog(this, "Please enter your password", "Warning",JOptionPane.WARNING_MESSAGE);
+             SelectError categoryExists=new SelectError();
+            categoryExists.setText("Password field is empty");
+            categoryExists.setVisible(true);
         }else{
             try {
                 ResultSet rs=MySQL.execute("SELECT * FROM `softwareproject`.`supervisor` WHERE `username`='"+username+"' AND `password`='"+password+"'");
@@ -185,7 +218,8 @@ public class Login extends javax.swing.JFrame {
                         String lname=rs.getString("lname");
                         String mobile=rs.getString("mobile");
                         int id=rs.getInt("s_id");
-                        
+                        user_type_id=rs.getInt("user_type_u_id");
+                        //System.out.println(user_type_id);
                         
                         
                         userBean.setS_id(id);
@@ -231,7 +265,24 @@ public class Login extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         //FlatLightLaf.setup();
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
@@ -245,10 +296,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField SupervisorUsername;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

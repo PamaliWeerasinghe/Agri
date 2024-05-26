@@ -9,11 +9,24 @@ public class Dashboard extends javax.swing.JFrame {
     
     public Dashboard() {
         initComponents();
-        
+        //System.out.println(user_type_id);
+        grantPermission();
         
          
     }
-       
+     public void grantPermission(){
+         if(Login.user_type_id==1){
+             System.out.println("in");
+             jButton1.setVisible(false);
+             jButton4.setEnabled(false);
+             jButton5.setEnabled(false);
+             jButton6.setEnabled(false);
+             jButton7.setEnabled(false);
+             jButton8.setEnabled(false);
+             jButton9.setEnabled(false);
+             jButton10.setEnabled(false);
+         }
+     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -475,7 +488,7 @@ public class Dashboard extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
