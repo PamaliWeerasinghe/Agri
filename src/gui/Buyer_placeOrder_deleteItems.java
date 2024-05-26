@@ -1,34 +1,37 @@
-
 package gui;
 
+import static gui.PurchaseOrder_deleteItems.totalCost;
+import static gui.PurchaseOrder_deleteItems.totalqty;
 import gui.output.SelectError;
 import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import model.BuyerDeleteItems;
 import model.MySQL;
-import model.addItemsModel;
-import static model.addItemsModel.orderID;
+import static model.buyerOrderModel.orderID;
+import model.buyerOrderModel;
 
-
-public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
-    public static final addItemsModel deleteItems=new addItemsModel();
+public class Buyer_placeOrder_deleteItems extends javax.swing.JFrame {
+    public static final buyerOrderModel deleteItems=new buyerOrderModel();
     public static int totalqty=0;
     public static double totalCost=0;
    
-    public PurchaseOrder_deleteItems() {
+    public Buyer_placeOrder_deleteItems() {
         initComponents();
-        
-      
-        DefaultTableModel dtm=(DefaultTableModel) deleteItems_table.getModel();
+        DefaultTableModel dtm=(DefaultTableModel) BuyerdeleteItems_table.getModel();
         loadTable(dtm);
-        
     }
-    public void deleteItem(int selectedRowId, String qty, String cost) {
+    public void deleteItem(int selectedRowId, String qty, String cost ,String crop) {
         double cost1=Double.parseDouble(cost);
         //System.out.println(cost1);
+        
         try {
-            MySQL.execute("UPDATE `invoice` SET `total`=`total`-'"+cost1+"' WHERE `ordSup_id`='"+orderID+"'");
-            MySQL.execute("DELETE FROM `invoice_has_items` WHERE `invoice_id`='"+selectedRowId+"'");
+            MySQL.execute("UPDATE `crop_invoice` SET `total`=`total`-'"+cost1+"' WHERE `order_id`='"+orderID+"'");
+            ResultSet rs=MySQL.execute("SELECT * FROM `crop` WHERE `type`='"+crop+"'");
+            if(rs.next()){
+                MySQL.execute("UPDATE `crop` SET `qty`=`qty`+'"+qty+"' WHERE `c_id`='"+rs.getInt("c_id")+"'");
+            }
+            MySQL.execute("DELETE FROM `buyer_purchase_yield` WHERE `buyer_qty_id`='"+selectedRowId+"'");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,25 +39,22 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
         //System.out.println(totalCost);
         totalqty=totalqty-Integer.parseInt(qty);
         String stringTotalCost=String.valueOf(totalCost);
-        deleteItems_totalAmount.setText(stringTotalCost);
+        BuyerdeleteItems_totalAmount.setText(stringTotalCost);
         String stringTotalQty=String.valueOf(totalqty);
-        deleteItems_totalProducts.setText(stringTotalQty);
+        BuyerdeleteItems_totalProducts.setText(stringTotalQty);
         
     }
     public void loadTable(DefaultTableModel dtm) {
         dtm.setRowCount(0);
         totalCost=0;
         totalqty=0;
-        //deleteItems_totalAmount.setText("");
-        //deleteItems_totalProducts.setText("");
         int qty;
         double unit_price,cost = 0;
         try {
-            ResultSet rs=MySQL.execute("SELECT * FROM `supplies_has_supplier` INNER JOIN `invoice_has_items`"
-                    + "ON `invoice_has_items`.`productSupplier_id`=`supplies_has_supplier`.`shs_id` INNER JOIN `supplier`"
-                    + "ON `supplies_has_supplier`.`supplier_sup_id`=`supplier`.`sup_id` INNER JOIN `supplies`"
-                    + "ON `supplies_has_supplier`.`supplies_supplies_id`=`supplies`.`supplies_id`"
-                    + "WHERE `order_ordSup_id`='"+orderID+"' ");
+            ResultSet rs=MySQL.execute("SELECT * FROM `buyer_purchase_yield` INNER JOIN `crop`"
+                    + "ON `buyer_purchase_yield`.`crop_c_id`=`crop`.`c_id` INNER JOIN `crop_invoice`"
+                    + "ON `buyer_purchase_yield`.`invoice_id`=`crop_invoice`.`order_id`"
+                    + "WHERE `crop_invoice`.`status_id`='1' AND `invoice_id`='"+orderID+"'");
             while(rs.next()){
                 Vector v=new Vector();
                 qty=rs.getInt("qty");
@@ -62,9 +62,9 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
                 unit_price=rs.getDouble("unit_price");
                 cost=qty*unit_price;
                 totalCost=totalCost+cost;
-                v.add(rs.getInt("invoice_id"));
-                v.add(rs.getString("title"));
-                v.add(rs.getString("name"));
+                v.add(rs.getInt("buyer_qty_id"));
+                v.add(rs.getString("type"));
+                //v.add(rs.getString("name"));
                 v.add(rs.getString("qty"));
                 v.add(rs.getString("unit_price"));
                 v.add(cost);
@@ -72,15 +72,13 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
             }
             String costString=String.valueOf(totalCost);
             String qtyString=String.valueOf(totalqty);
-            deleteItems_totalAmount.setText(costString);
-            deleteItems_totalProducts.setText(qtyString);
+            BuyerdeleteItems_totalAmount.setText(costString);
+            BuyerdeleteItems_totalProducts.setText(qtyString);
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,14 +88,14 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
         addYield_CloseBtn = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        deleteItems_table = new javax.swing.JTable();
+        BuyerdeleteItems_table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        deleteItems_totalProducts = new javax.swing.JLabel();
+        BuyerdeleteItems_totalProducts = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        deleteItems_totalAmount = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        deleteItems_done = new javax.swing.JButton();
+        BuyerdeleteItems_totalAmount = new javax.swing.JLabel();
+        BuyerjButton5 = new javax.swing.JButton();
+        BuyerdeleteItems_done = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,7 +122,7 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 930, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addYield_CloseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -136,49 +134,47 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
 
-        deleteItems_table.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
-        deleteItems_table.setForeground(new java.awt.Color(69, 69, 69));
-        deleteItems_table.setModel(new javax.swing.table.DefaultTableModel(
+        BuyerdeleteItems_table.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
+        BuyerdeleteItems_table.setForeground(new java.awt.Color(69, 69, 69));
+        BuyerdeleteItems_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ORDER ID", "PRODUCT", "SUPPLIER", "QUANTITY", "UNIT PRICE", "AMOUNT"
+                "ORDER ID", "CROP", "QUANTITY", "UNIT PRICE", "AMOUNT"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        deleteItems_table.setFocusable(false);
-        deleteItems_table.setGridColor(new java.awt.Color(255, 255, 255));
-        deleteItems_table.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        deleteItems_table.setRowHeight(28);
-        deleteItems_table.setSelectionBackground(new java.awt.Color(222, 191, 142));
-        deleteItems_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        deleteItems_table.setShowVerticalLines(false);
-        deleteItems_table.getTableHeader().setReorderingAllowed(false);
-        deleteItems_table.addMouseListener(new java.awt.event.MouseAdapter() {
+        BuyerdeleteItems_table.setFocusable(false);
+        BuyerdeleteItems_table.setGridColor(new java.awt.Color(255, 255, 255));
+        BuyerdeleteItems_table.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        BuyerdeleteItems_table.setRowHeight(28);
+        BuyerdeleteItems_table.setSelectionBackground(new java.awt.Color(222, 191, 142));
+        BuyerdeleteItems_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        BuyerdeleteItems_table.setShowVerticalLines(false);
+        BuyerdeleteItems_table.getTableHeader().setReorderingAllowed(false);
+        BuyerdeleteItems_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteItems_tableMouseClicked(evt);
+                BuyerdeleteItems_tableMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                deleteItems_tableMouseEntered(evt);
+                BuyerdeleteItems_tableMouseEntered(evt);
             }
         });
-        jScrollPane2.setViewportView(deleteItems_table);
-        if (deleteItems_table.getColumnModel().getColumnCount() > 0) {
-            deleteItems_table.getColumnModel().getColumn(0).setResizable(false);
-            deleteItems_table.getColumnModel().getColumn(0).setPreferredWidth(5);
-            deleteItems_table.getColumnModel().getColumn(1).setResizable(false);
-            deleteItems_table.getColumnModel().getColumn(2).setResizable(false);
-            deleteItems_table.getColumnModel().getColumn(3).setResizable(false);
-            deleteItems_table.getColumnModel().getColumn(4).setResizable(false);
-            deleteItems_table.getColumnModel().getColumn(5).setResizable(false);
+        jScrollPane2.setViewportView(BuyerdeleteItems_table);
+        if (BuyerdeleteItems_table.getColumnModel().getColumnCount() > 0) {
+            BuyerdeleteItems_table.getColumnModel().getColumn(0).setResizable(false);
+            BuyerdeleteItems_table.getColumnModel().getColumn(1).setResizable(false);
+            BuyerdeleteItems_table.getColumnModel().getColumn(2).setResizable(false);
+            BuyerdeleteItems_table.getColumnModel().getColumn(3).setResizable(false);
+            BuyerdeleteItems_table.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jPanel5.setBackground(new java.awt.Color(245, 230, 210));
@@ -188,46 +184,46 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/full-box.png"))); // NOI18N
         jLabel6.setText("TOTAL PRODUCTS :");
 
-        deleteItems_totalProducts.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        deleteItems_totalProducts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deleteItems_totalProducts.setText("qty");
+        BuyerdeleteItems_totalProducts.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        BuyerdeleteItems_totalProducts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BuyerdeleteItems_totalProducts.setText("qty");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/purchase-order.png"))); // NOI18N
         jLabel10.setText("TOTAL AMOUNT :");
 
-        deleteItems_totalAmount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        deleteItems_totalAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        deleteItems_totalAmount.setText("qty");
+        BuyerdeleteItems_totalAmount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        BuyerdeleteItems_totalAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BuyerdeleteItems_totalAmount.setText("qty");
 
-        jButton5.setBackground(new java.awt.Color(240, 209, 167));
-        jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(51, 51, 51));
-        jButton5.setText("DELETE ROW");
-        jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(184, 156, 118)));
-        jButton5.setContentAreaFilled(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton5.setFocusPainted(false);
-        jButton5.setOpaque(true);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        BuyerjButton5.setBackground(new java.awt.Color(240, 209, 167));
+        BuyerjButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
+        BuyerjButton5.setForeground(new java.awt.Color(51, 51, 51));
+        BuyerjButton5.setText("DELETE ROW");
+        BuyerjButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(184, 156, 118)));
+        BuyerjButton5.setContentAreaFilled(false);
+        BuyerjButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BuyerjButton5.setFocusPainted(false);
+        BuyerjButton5.setOpaque(true);
+        BuyerjButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                BuyerjButton5ActionPerformed(evt);
             }
         });
 
-        deleteItems_done.setBackground(new java.awt.Color(240, 209, 167));
-        deleteItems_done.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        deleteItems_done.setForeground(new java.awt.Color(51, 51, 51));
-        deleteItems_done.setText(" DONE");
-        deleteItems_done.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(184, 156, 118)));
-        deleteItems_done.setContentAreaFilled(false);
-        deleteItems_done.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        deleteItems_done.setFocusPainted(false);
-        deleteItems_done.setOpaque(true);
-        deleteItems_done.addActionListener(new java.awt.event.ActionListener() {
+        BuyerdeleteItems_done.setBackground(new java.awt.Color(240, 209, 167));
+        BuyerdeleteItems_done.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
+        BuyerdeleteItems_done.setForeground(new java.awt.Color(51, 51, 51));
+        BuyerdeleteItems_done.setText(" DONE");
+        BuyerdeleteItems_done.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(184, 156, 118)));
+        BuyerdeleteItems_done.setContentAreaFilled(false);
+        BuyerdeleteItems_done.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BuyerdeleteItems_done.setFocusPainted(false);
+        BuyerdeleteItems_done.setOpaque(true);
+        BuyerdeleteItems_done.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteItems_doneActionPerformed(evt);
+                BuyerdeleteItems_doneActionPerformed(evt);
             }
         });
 
@@ -239,15 +235,15 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deleteItems_totalProducts)
+                .addComponent(BuyerdeleteItems_totalProducts)
                 .addGap(59, 59, 59)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
-                .addComponent(deleteItems_totalAmount)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BuyerdeleteItems_totalAmount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
+                .addComponent(BuyerjButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(deleteItems_done, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BuyerdeleteItems_done, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
         jPanel5Layout.setVerticalGroup(
@@ -255,12 +251,12 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 34, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(deleteItems_totalProducts, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BuyerdeleteItems_totalProducts, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(deleteItems_totalAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(deleteItems_done, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BuyerdeleteItems_totalAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BuyerjButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BuyerdeleteItems_done, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
@@ -277,22 +273,25 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -302,34 +301,35 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addYield_CloseBtnMouseClicked
 
-    private void deleteItems_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteItems_tableMouseClicked
-       
-    }//GEN-LAST:event_deleteItems_tableMouseClicked
+    private void BuyerdeleteItems_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerdeleteItems_tableMouseClicked
 
-    private void deleteItems_tableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteItems_tableMouseEntered
+    }//GEN-LAST:event_BuyerdeleteItems_tableMouseClicked
+
+    private void BuyerdeleteItems_tableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerdeleteItems_tableMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_deleteItems_tableMouseEntered
+    }//GEN-LAST:event_BuyerdeleteItems_tableMouseEntered
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int selectedRow=deleteItems_table.getSelectedRow();
+    private void BuyerjButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerjButton5ActionPerformed
+        int selectedRow=BuyerdeleteItems_table.getSelectedRow();
         if(selectedRow!=-1){
-            int selectedRowId=(int)deleteItems_table.getValueAt(selectedRow,0);
-            String qty= deleteItems_table.getValueAt(selectedRow, 3).toString();
-            String cost=deleteItems_table.getValueAt(selectedRow, 5).toString();
-            
-            deleteItem(selectedRowId,qty,cost);
-            DefaultTableModel dtm=(DefaultTableModel) deleteItems_table.getModel();
+            int selectedRowId=(int)BuyerdeleteItems_table.getValueAt(selectedRow,0);
+            String qty= BuyerdeleteItems_table.getValueAt(selectedRow, 2).toString();
+            String cost=BuyerdeleteItems_table.getValueAt(selectedRow, 4).toString();
+            String crop=BuyerdeleteItems_table.getValueAt(selectedRow, 1).toString();
+
+            deleteItem(selectedRowId,qty,cost,crop);
+            DefaultTableModel dtm=(DefaultTableModel) BuyerdeleteItems_table.getModel();
             loadTable(dtm);
         }else{
             SelectError categoryExists=new SelectError();
             categoryExists.setText("Select a row to delete");
             categoryExists.setVisible(true);
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_BuyerjButton5ActionPerformed
 
-    private void deleteItems_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteItems_doneActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_deleteItems_doneActionPerformed
+    private void BuyerdeleteItems_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerdeleteItems_doneActionPerformed
+
+    }//GEN-LAST:event_BuyerdeleteItems_doneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,37 +342,37 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PurchaseOrder_deleteItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Buyer_placeOrder_deleteItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PurchaseOrder_deleteItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Buyer_placeOrder_deleteItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PurchaseOrder_deleteItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Buyer_placeOrder_deleteItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PurchaseOrder_deleteItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Buyer_placeOrder_deleteItems.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PurchaseOrder_deleteItems().setVisible(true);
+                new Buyer_placeOrder_deleteItems().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BuyerdeleteItems_done;
+    public javax.swing.JTable BuyerdeleteItems_table;
+    public javax.swing.JLabel BuyerdeleteItems_totalAmount;
+    public javax.swing.JLabel BuyerdeleteItems_totalProducts;
+    private javax.swing.JButton BuyerjButton5;
     private javax.swing.JLabel addYield_CloseBtn;
-    private javax.swing.JButton deleteItems_done;
-    public javax.swing.JTable deleteItems_table;
-    public javax.swing.JLabel deleteItems_totalAmount;
-    public javax.swing.JLabel deleteItems_totalProducts;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
