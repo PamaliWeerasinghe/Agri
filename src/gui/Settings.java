@@ -87,7 +87,7 @@ public class Settings extends javax.swing.JFrame {
         jLabel6.setText("Developed by            :");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semilight", 0, 11)); // NOI18N
-        jLabel10.setText("GIMMICK (PVT) .LTD");
+        jLabel10.setText("INFONITE (PVT) .LTD");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jLabel7.setText("RAM                            :");

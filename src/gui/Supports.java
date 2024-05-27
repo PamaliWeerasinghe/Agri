@@ -61,7 +61,7 @@ public class Supports extends javax.swing.JFrame {
         );
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Semilight", 0, 11)); // NOI18N
-        jLabel11.setText("contactgimmick@gmail.com");
+        jLabel11.setText("contactinfonite@gmail.com");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Semilight", 0, 11)); // NOI18N
         jLabel12.setText("94/A,Queens Road, Colombo 07");
@@ -79,7 +79,7 @@ public class Supports extends javax.swing.JFrame {
         jLabel8.setText("Address                       :");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Semilight", 0, 11)); // NOI18N
-        jLabel9.setText("GIMMICK (PVT) .LTD");
+        jLabel9.setText("INFONITE (PVT) .LTD");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semilight", 0, 11)); // NOI18N
         jLabel10.setText("(+94) 112 717 180");
@@ -90,7 +90,7 @@ public class Supports extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Brush Script MT", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(247, 247, 247));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("GIMMICK");
+        jLabel4.setText("INFONITE");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 240, 250));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/hexagon (1).png"))); // NOI18N
