@@ -3,6 +3,7 @@ package gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import gui.output.SelectError;
+import gui.output.Success;
 import gui.output.error;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -58,6 +59,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancel.png"))); // NOI18N
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 0, 54, 64));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -226,10 +233,11 @@ public class Login extends javax.swing.JFrame {
                         userBean.setFname(fname);
                         userBean.setLname(lname);
                         userBean.setMobile(mobile);
-                        
+                        userBean.setUser_type_id(user_type_id);
                         
                         //dashboard.getUserBean(userBean);
-                        
+                        //Success suceed = new Success(this, true);
+                        //suceed.setVisible(true);
                         dashboard.setVisible(true);
                         
                         
@@ -259,6 +267,10 @@ public class Login extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_SupervisorSignInBtnActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments

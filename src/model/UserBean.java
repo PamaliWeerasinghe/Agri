@@ -3,6 +3,14 @@ package model;
 
 public class UserBean {
 
+    public int getUser_type_id() {
+        return user_type_id;
+    }
+
+    public void setUser_type_id(int user_type_id) {
+        this.user_type_id = user_type_id;
+    }
+
     public String getFname() {
         return fname;
     }
@@ -47,5 +55,6 @@ public class UserBean {
    private int s_id;
    private String mobile;
    private String password;
+   private int user_type_id;
    
 }

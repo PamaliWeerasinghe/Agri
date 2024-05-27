@@ -105,6 +105,11 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         addYield_CloseBtn = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        orderView_table = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        itemView_table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         ViewItems_totalProducts = new javax.swing.JLabel();
@@ -112,11 +117,6 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
         viewItems_totalAmount = new javax.swing.JLabel();
         deleteItems_done = new javax.swing.JButton();
         viewItems_printInvoice = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        orderView_table = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        itemView_table = new javax.swing.JTable();
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
 
@@ -157,6 +157,7 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
         jScrollPane2.setViewportView(deleteItems_table);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -164,6 +165,7 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
 
         addYield_CloseBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addYield_CloseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancel.png"))); // NOI18N
+        addYield_CloseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addYield_CloseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addYield_CloseBtnMouseClicked(evt);
@@ -181,7 +183,7 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 913, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1031, Short.MAX_VALUE)
                 .addComponent(addYield_CloseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -189,6 +191,101 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
             .addComponent(addYield_CloseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+
+        orderView_table.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
+        orderView_table.setForeground(new java.awt.Color(69, 69, 69));
+        orderView_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ORDER ID", "DATE"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        orderView_table.setFocusable(false);
+        orderView_table.setGridColor(new java.awt.Color(255, 255, 255));
+        orderView_table.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        orderView_table.setRowHeight(28);
+        orderView_table.setSelectionBackground(new java.awt.Color(222, 191, 142));
+        orderView_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        orderView_table.setShowVerticalLines(false);
+        orderView_table.getTableHeader().setReorderingAllowed(false);
+        orderView_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderView_tableMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(orderView_table);
+
+        jTabbedPane1.addTab("INVOICE", jScrollPane3);
+
+        jScrollPane4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+
+        itemView_table.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
+        itemView_table.setForeground(new java.awt.Color(69, 69, 69));
+        itemView_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ORDER ID", "PRODUCT", "SUPPLIER", "QUANTITY", "UNIT PRICE", "AMOUNT"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        itemView_table.setFocusable(false);
+        itemView_table.setGridColor(new java.awt.Color(255, 255, 255));
+        itemView_table.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        itemView_table.setRowHeight(28);
+        itemView_table.setSelectionBackground(new java.awt.Color(222, 191, 142));
+        itemView_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        itemView_table.setShowVerticalLines(false);
+        itemView_table.getTableHeader().setReorderingAllowed(false);
+        itemView_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemView_tableMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                itemView_tableMouseEntered(evt);
+            }
+        });
+        jScrollPane4.setViewportView(itemView_table);
+
+        jTabbedPane1.addTab("ITEMS", jScrollPane4);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1226, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(245, 230, 210));
@@ -275,126 +372,31 @@ public class PurchaseOrder_ViewInvoices extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        orderView_table.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
-        orderView_table.setForeground(new java.awt.Color(69, 69, 69));
-        orderView_table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ORDER ID", "DATE"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        orderView_table.setFocusable(false);
-        orderView_table.setGridColor(new java.awt.Color(255, 255, 255));
-        orderView_table.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        orderView_table.setRowHeight(28);
-        orderView_table.setSelectionBackground(new java.awt.Color(222, 191, 142));
-        orderView_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        orderView_table.setShowVerticalLines(false);
-        orderView_table.getTableHeader().setReorderingAllowed(false);
-        orderView_table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                orderView_tableMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(orderView_table);
-
-        jTabbedPane1.addTab("INVOICE", jScrollPane3);
-
-        jScrollPane4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        itemView_table.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
-        itemView_table.setForeground(new java.awt.Color(69, 69, 69));
-        itemView_table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ORDER ID", "PRODUCT", "SUPPLIER", "QUANTITY", "UNIT PRICE", "AMOUNT"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        itemView_table.setFocusable(false);
-        itemView_table.setGridColor(new java.awt.Color(255, 255, 255));
-        itemView_table.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        itemView_table.setRowHeight(28);
-        itemView_table.setSelectionBackground(new java.awt.Color(222, 191, 142));
-        itemView_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        itemView_table.setShowVerticalLines(false);
-        itemView_table.getTableHeader().setReorderingAllowed(false);
-        itemView_table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                itemView_tableMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                itemView_tableMouseEntered(evt);
-            }
-        });
-        jScrollPane4.setViewportView(itemView_table);
-
-        jTabbedPane1.addTab("ITEMS", jScrollPane4);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addYield_CloseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addYield_CloseBtnMouseClicked
-
+        this.dispose();
     }//GEN-LAST:event_addYield_CloseBtnMouseClicked
 
     private void deleteItems_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteItems_doneActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_deleteItems_doneActionPerformed
 
     private void orderView_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderView_tableMouseClicked

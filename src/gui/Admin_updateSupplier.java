@@ -81,6 +81,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
         updateSupplier_table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         addYield_panel1.setBackground(new java.awt.Color(226, 185, 130));
 
@@ -201,32 +202,30 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
             .addGroup(addYield_panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(supplierUpdate_viewReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(supplierUpdate_updtBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(addYield_panel1Layout.createSequentialGroup()
                         .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15))
-                        .addGap(0, 108, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addYield_panel1Layout.createSequentialGroup()
-                        .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(supplierUpdate_viewReport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(supplierUpdate_title, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addYield_panel1Layout.createSequentialGroup()
-                                .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel14))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(supplierUpdate_updtBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(supplierUpdate_combo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(supplierUpdate_address, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(supplierUpdate_mobile, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(supplierUpdate_name))
-                        .addContainerGap())))
+                        .addGap(96, 96, 96))
+                    .addComponent(supplierUpdate_title)
+                    .addGroup(addYield_panel1Layout.createSequentialGroup()
+                        .addGroup(addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel14))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(supplierUpdate_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(supplierUpdate_address)
+                    .addComponent(supplierUpdate_mobile)
+                    .addComponent(supplierUpdate_name, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         addYield_panel1Layout.setVerticalGroup(
             addYield_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addYield_panel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(supplierUpdate_name, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,17 +245,18 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(supplierUpdate_title, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(83, 83, 83)
                 .addComponent(supplierUpdate_viewReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(supplierUpdate_updtBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancel.png"))); // NOI18N
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel9MouseClicked(evt);
@@ -349,7 +349,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
                 .addComponent(supplierAdd_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(supplierUpdate_searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,6 +361,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
+        updateSupplier_table.setForeground(new java.awt.Color(69, 69, 69));
         updateSupplier_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -377,6 +378,11 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        updateSupplier_table.setGridColor(new java.awt.Color(255, 255, 255));
+        updateSupplier_table.setRowHeight(28);
+        updateSupplier_table.setSelectionBackground(new java.awt.Color(222, 191, 142));
+        updateSupplier_table.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        updateSupplier_table.setShowVerticalLines(false);
         updateSupplier_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updateSupplier_tableMouseClicked(evt);
@@ -404,7 +410,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -420,6 +426,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void supplierUpdate_updtBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierUpdate_updtBtnMouseEntered
@@ -472,8 +479,8 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
     }//GEN-LAST:event_supplierUpdate_titleActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        SupplierDashboard supplierDash=new SupplierDashboard();
-        supplierDash.setVisible(true);
+        //SupplierDashboard supplierDash=new SupplierDashboard();
+        //supplierDash.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 

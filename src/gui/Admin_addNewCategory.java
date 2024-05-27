@@ -49,6 +49,7 @@ public class Admin_addNewCategory extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         addYield_panel1.setBackground(new java.awt.Color(226, 185, 130));
 
@@ -193,6 +194,7 @@ public class Admin_addNewCategory extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addYield_InsertBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addYield_InsertBtnMouseEntered
@@ -214,7 +216,7 @@ public class Admin_addNewCategory extends javax.swing.JFrame {
     }//GEN-LAST:event_categoryAdd_comboActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void categoryAdd_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryAdd_nameActionPerformed

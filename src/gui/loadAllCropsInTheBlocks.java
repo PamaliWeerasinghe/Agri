@@ -1,18 +1,33 @@
 package gui;
 
+import java.awt.Color;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class loadAllCropsInTheBlocks extends javax.swing.JFrame {
 
     public loadAllCropsInTheBlocks() {
         initComponents();
         loadDetails();
+        setDate();
+    }
+    public void setDate(){
+        String textDate=new SimpleDateFormat("MM / dd / yyyy",Locale.ENGLISH).format(new Date());
+        jLabel1.setText(textDate);
     }
     public void loadDetails(){
-        DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
+        DefaultTableModel model=(DefaultTableModel)blockcrops.getModel();
         model.setRowCount(0);
         try {
             ResultSet rs=MySQL.execute("SELECT * FROM `block_has_crop` INNER JOIN `block`"
@@ -27,6 +42,7 @@ public class loadAllCropsInTheBlocks extends javax.swing.JFrame {
                 Vector v=new Vector();
                 v.add(rs.getString("name"));
                 v.add(rs.getString("type"));
+                v.add(rs.getString("expected_yield"));
                 v.add(fullName);
                
                 model.addRow(v);
@@ -44,50 +60,126 @@ public class loadAllCropsInTheBlocks extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        blockcrops = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        loadAllReport = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        blockcrops.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        blockcrops.setForeground(new java.awt.Color(69, 69, 69));
+        blockcrops.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "BLOCK", "CROP", "SUPERVSIOR"
+                "BLOCK", "CROP", "EXPECTED YIELD ( kg )", "SUPERVISOR"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        blockcrops.setGridColor(new java.awt.Color(255, 255, 255));
+        blockcrops.setSelectionBackground(new java.awt.Color(222, 191, 142));
+        blockcrops.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        blockcrops.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(blockcrops);
+        if (blockcrops.getColumnModel().getColumnCount() > 0) {
+            blockcrops.getColumnModel().getColumn(0).setResizable(false);
+            blockcrops.getColumnModel().getColumn(1).setResizable(false);
+            blockcrops.getColumnModel().getColumn(2).setResizable(false);
         }
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 153, 153)));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 17)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/left-arrow.png"))); // NOI18N
+        jLabel2.setText("Crops currently in the blocks");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        loadAllReport.setBackground(new java.awt.Color(255, 246, 207));
+        loadAllReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        loadAllReport.setText("GENERATE REPORT");
+        loadAllReport.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 102, 0)));
+        loadAllReport.setContentAreaFilled(false);
+        loadAllReport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loadAllReport.setFocusPainted(false);
+        loadAllReport.setOpaque(true);
+        loadAllReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                loadAllReportMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                loadAllReportMouseExited(evt);
+            }
+        });
+        loadAllReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadAllReportActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText(" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loadAllReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(loadAllReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,11 +190,44 @@ public class loadAllCropsInTheBlocks extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void loadAllReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadAllReportMouseEntered
+        loadAllReport.setBackground(new Color(193, 153, 111));
+        loadAllReport.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_loadAllReportMouseEntered
+
+    private void loadAllReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadAllReportMouseExited
+        loadAllReport.setBackground(new Color(255, 246, 207));
+        loadAllReport.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_loadAllReportMouseExited
+
+    private void loadAllReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAllReportActionPerformed
+        String path="src/reports/blockCrop.jasper";
+        HashMap<String,Object> parameters=new HashMap<>();
+        parameters.put("Parameter1",jLabel1.getText());
+        //parameters.put("Parameter2",BuyerViewItems_totalProducts.getText());
+        //parameters.put("Parameter3",BuyerviewItems_totalAmount.getText());
+
+        JRTableModelDataSource dataSource=new JRTableModelDataSource(blockcrops.getModel());
+        try {
+            JasperPrint jasperPrint=JasperFillManager.fillReport(path, parameters,dataSource);
+            JasperViewer.viewReport(jasperPrint);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_loadAllReportActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -112,7 +237,7 @@ public class loadAllCropsInTheBlocks extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -137,8 +262,12 @@ public class loadAllCropsInTheBlocks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable blockcrops;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton loadAllReport;
     // End of variables declaration//GEN-END:variables
 }
