@@ -10,7 +10,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class addItemsModel {
     public static String orderID;
-    
+    public void reloadOrderTable(DefaultTableModel dfm,String id){
+        try {
+            ResultSet invoices_opened=MySQL.execute("SELECT * FROM `invoice` WHERE `status_id`='1' AND `ordSup_id` LIKE '"+id+"'");
+            dfm.setRowCount(0);
+            while(invoices_opened.next()){
+                Vector v=new Vector();
+                v.add(invoices_opened.getInt("ordSup_id"));
+                v.add(invoices_opened.getString("orderDate"));
+                dfm.addRow(v);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void loadItemsInInvoiceTable(DefaultTableModel dtm){
        int qty;
        double unit_price,cost;
@@ -207,6 +221,8 @@ public class addItemsModel {
         
         
     }
+
+    
 
     
    

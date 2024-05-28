@@ -302,7 +302,7 @@ public class PurchaseOrder_deleteItems extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addYield_CloseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addYield_CloseBtnMouseClicked
-
+        this.dispose();
     }//GEN-LAST:event_addYield_CloseBtnMouseClicked
 
     private void deleteItems_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteItems_tableMouseClicked

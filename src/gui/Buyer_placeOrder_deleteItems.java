@@ -98,6 +98,7 @@ public class Buyer_placeOrder_deleteItems extends javax.swing.JFrame {
         BuyerdeleteItems_done = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -105,6 +106,7 @@ public class Buyer_placeOrder_deleteItems extends javax.swing.JFrame {
 
         addYield_CloseBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addYield_CloseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancel.png"))); // NOI18N
+        addYield_CloseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addYield_CloseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addYield_CloseBtnMouseClicked(evt);
@@ -295,10 +297,11 @@ public class Buyer_placeOrder_deleteItems extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addYield_CloseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addYield_CloseBtnMouseClicked
-
+        this.dispose();
     }//GEN-LAST:event_addYield_CloseBtnMouseClicked
 
     private void BuyerdeleteItems_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerdeleteItems_tableMouseClicked
@@ -328,7 +331,7 @@ public class Buyer_placeOrder_deleteItems extends javax.swing.JFrame {
     }//GEN-LAST:event_BuyerjButton5ActionPerformed
 
     private void BuyerdeleteItems_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerdeleteItems_doneActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_BuyerdeleteItems_doneActionPerformed
 
     /**
@@ -342,7 +345,7 @@ public class Buyer_placeOrder_deleteItems extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

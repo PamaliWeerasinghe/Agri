@@ -40,12 +40,13 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        orderDeletejTextField2 = new javax.swing.JTextField();
+        orderDeletejButton2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         orderDelete_table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 51, 0)));
@@ -193,35 +194,45 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(null);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("Please Enter The Order Date");
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(164, 142, 109)));
-        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+        orderDeletejTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        orderDeletejTextField2.setForeground(new java.awt.Color(153, 153, 153));
+        orderDeletejTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        orderDeletejTextField2.setText("Please Enter The Order ID");
+        orderDeletejTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(164, 142, 109)));
+        orderDeletejTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                orderDeletejTextField2FocusLost(evt);
+            }
+        });
+        orderDeletejTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField2MouseClicked(evt);
+                orderDeletejTextField2MouseClicked(evt);
             }
         });
-        jPanel7.add(jTextField2);
-        jTextField2.setBounds(110, 10, 370, 40);
+        orderDeletejTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                orderDeletejTextField2KeyReleased(evt);
+            }
+        });
+        jPanel7.add(orderDeletejTextField2);
+        orderDeletejTextField2.setBounds(110, 10, 370, 40);
 
-        jButton2.setBackground(new java.awt.Color(222, 191, 142));
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("SEARCH");
-        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(184, 156, 118)));
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.setOpaque(true);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        orderDeletejButton2.setBackground(new java.awt.Color(222, 191, 142));
+        orderDeletejButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
+        orderDeletejButton2.setForeground(new java.awt.Color(51, 51, 51));
+        orderDeletejButton2.setText("SEARCH");
+        orderDeletejButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(184, 156, 118)));
+        orderDeletejButton2.setContentAreaFilled(false);
+        orderDeletejButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        orderDeletejButton2.setFocusPainted(false);
+        orderDeletejButton2.setOpaque(true);
+        orderDeletejButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                orderDeletejButton2ActionPerformed(evt);
             }
         });
-        jPanel7.add(jButton2);
-        jButton2.setBounds(480, 10, 130, 40);
+        jPanel7.add(orderDeletejButton2);
+        orderDeletejButton2.setBounds(480, 10, 130, 40);
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
@@ -276,11 +287,11 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("Job Details", jPanel6);
+        jTabbedPane1.addTab("ORDER DETAILS", jPanel6);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -297,10 +308,10 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -315,6 +326,7 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void orderDelete_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderDelete_IDActionPerformed
@@ -364,15 +376,17 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPanel3MouseClicked
 
-    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
-        jTextField2.setText(null);
-        jTextField2.setForeground(new Color(0,0,0));
-        jTextField2.setCaretColor(new Color(0,0,0));
-    }//GEN-LAST:event_jTextField2MouseClicked
+    private void orderDeletejTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderDeletejTextField2MouseClicked
+        orderDeletejTextField2.setText("");
+        orderDeletejTextField2.setForeground(new Color(0,0,0));
+        orderDeletejTextField2.setCaretColor(new Color(0,0,0));
+    }//GEN-LAST:event_orderDeletejTextField2MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void orderDeletejButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderDeletejButton2ActionPerformed
+        String text=orderDeletejTextField2.getText();
+        DefaultTableModel dtm =(DefaultTableModel) orderDelete_table.getModel();
+        //addItems.reloadOrderTableSearch(dtm,text);
+    }//GEN-LAST:event_orderDeletejButton2ActionPerformed
 
     private void orderDelete_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderDelete_tableMouseClicked
         int row = orderDelete_table.getSelectedRow();
@@ -391,6 +405,20 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void orderDeletejTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_orderDeletejTextField2KeyReleased
+        String text=orderDeletejTextField2.getText();
+        DefaultTableModel dtm =(DefaultTableModel) orderDelete_table.getModel();
+        addItems.reloadOrderTable(dtm,text);
+        
+    }//GEN-LAST:event_orderDeletejTextField2KeyReleased
+
+    private void orderDeletejTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_orderDeletejTextField2FocusLost
+        // TODO add your handling code here:
+        orderDeletejTextField2.setText("Enter the Order ID");
+        DefaultTableModel dtm =(DefaultTableModel) orderDelete_table.getModel();
+        addItems.loadOrderTable(dtm);
+    }//GEN-LAST:event_orderDeletejTextField2FocusLost
 
     /**
      * @param args the command line arguments
@@ -428,7 +456,6 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -442,9 +469,10 @@ public class PurchaseOrder_deleteOrder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField orderDelete_ID;
     private javax.swing.JTextField orderDelete_date;
     private javax.swing.JTable orderDelete_table;
+    private javax.swing.JButton orderDeletejButton2;
+    private javax.swing.JTextField orderDeletejTextField2;
     // End of variables declaration//GEN-END:variables
 }

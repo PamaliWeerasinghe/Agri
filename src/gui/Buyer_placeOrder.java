@@ -5,10 +5,16 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import javax.swing.table.DefaultTableModel;
 import model.MySQL;
 import model.buyerOrderModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class Buyer_placeOrder extends javax.swing.JFrame {
     public static final buyerOrderModel o_model=new buyerOrderModel();
@@ -46,8 +52,7 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
         addYield_CloseBtn = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        BuyerjTextField2 = new javax.swing.JTextField();
-        BuyerpurchaseOrder_Search = new javax.swing.JButton();
+        BuyerpurchaseOrder_insert1 = new javax.swing.JButton();
         purchaseOrder_TabbedPane = new javax.swing.JTabbedPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         BuyerpurchaseOrder_orderTable = new javax.swing.JTable();
@@ -55,6 +60,7 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
         BuyerpurchaseOrder_buyerTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -171,25 +177,29 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(BuyerpurchaseOrder_orderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(BuyerpurchaseOrder_buyerID, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(BuyerjButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addGap(0, 0, Short.MAX_VALUE))))
-                        .addComponent(BuyerpurchaseOrder_id)
-                        .addComponent(BuyerpurchaseOrder_insert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BuyerpurchaseOrder_date)
-                        .addComponent(BuyerpurchaseOrder_addItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(BuyerpurchaseOrder_id)
+                                .addComponent(BuyerpurchaseOrder_insert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BuyerpurchaseOrder_addItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addComponent(BuyerpurchaseOrder_orderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(BuyerpurchaseOrder_buyerID, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(BuyerjButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addGap(0, 0, Short.MAX_VALUE)))))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(BuyerpurchaseOrder_date, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,11 +219,11 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BuyerjButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BuyerpurchaseOrder_buyerID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BuyerpurchaseOrder_date, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
                 .addComponent(BuyerpurchaseOrder_insert, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BuyerpurchaseOrder_addItems, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,6 +234,7 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
 
         addYield_CloseBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addYield_CloseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancel.png"))); // NOI18N
+        addYield_CloseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addYield_CloseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addYield_CloseBtnMouseClicked(evt);
@@ -241,7 +252,7 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
                 .addComponent(addYield_CloseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -254,35 +265,29 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setLayout(null);
 
-        BuyerjTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
-        BuyerjTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        BuyerjTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        BuyerjTextField2.setText("Please Enter The Order Date");
-        BuyerjTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(164, 142, 109)));
-        BuyerjTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BuyerjTextField2MouseClicked(evt);
+        BuyerpurchaseOrder_insert1.setBackground(new java.awt.Color(204, 255, 204));
+        BuyerpurchaseOrder_insert1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        BuyerpurchaseOrder_insert1.setText("GET A REPORT");
+        BuyerpurchaseOrder_insert1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 102, 0)));
+        BuyerpurchaseOrder_insert1.setContentAreaFilled(false);
+        BuyerpurchaseOrder_insert1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BuyerpurchaseOrder_insert1.setFocusPainted(false);
+        BuyerpurchaseOrder_insert1.setOpaque(true);
+        BuyerpurchaseOrder_insert1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BuyerpurchaseOrder_insert1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BuyerpurchaseOrder_insert1MouseExited(evt);
             }
         });
-        jPanel9.add(BuyerjTextField2);
-        BuyerjTextField2.setBounds(90, 20, 390, 40);
-
-        BuyerpurchaseOrder_Search.setBackground(new java.awt.Color(222, 191, 142));
-        BuyerpurchaseOrder_Search.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        BuyerpurchaseOrder_Search.setForeground(new java.awt.Color(51, 51, 51));
-        BuyerpurchaseOrder_Search.setText("SEARCH");
-        BuyerpurchaseOrder_Search.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(184, 156, 118)));
-        BuyerpurchaseOrder_Search.setContentAreaFilled(false);
-        BuyerpurchaseOrder_Search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BuyerpurchaseOrder_Search.setFocusPainted(false);
-        BuyerpurchaseOrder_Search.setOpaque(true);
-        BuyerpurchaseOrder_Search.addActionListener(new java.awt.event.ActionListener() {
+        BuyerpurchaseOrder_insert1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuyerpurchaseOrder_SearchActionPerformed(evt);
+                BuyerpurchaseOrder_insert1ActionPerformed(evt);
             }
         });
-        jPanel9.add(BuyerpurchaseOrder_Search);
-        BuyerpurchaseOrder_Search.setBounds(480, 20, 110, 40);
+        jPanel9.add(BuyerpurchaseOrder_insert1);
+        BuyerpurchaseOrder_insert1.setBounds(490, 20, 285, 43);
 
         purchaseOrder_TabbedPane.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -376,28 +381,22 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(purchaseOrder_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(purchaseOrder_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(purchaseOrder_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(purchaseOrder_TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -412,6 +411,7 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuyerpurchaseOrder_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_idActionPerformed
@@ -490,7 +490,7 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_BuyerpurchaseOrder_addItemsMouseExited
 
     private void BuyerpurchaseOrder_addItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_addItemsActionPerformed
-
+        new Buyer_placeOrder_insertItems().setVisible(true);
     }//GEN-LAST:event_BuyerpurchaseOrder_addItemsActionPerformed
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
@@ -498,21 +498,8 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void addYield_CloseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addYield_CloseBtnMouseClicked
-
+            this.dispose();
     }//GEN-LAST:event_addYield_CloseBtnMouseClicked
-
-    private void BuyerjTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerjTextField2MouseClicked
-        BuyerjTextField2.setText(null);
-        BuyerjTextField2.setCaretColor(new Color(0, 0, 0));
-        BuyerjTextField2.setForeground(new Color(0, 0, 0));
-    }//GEN-LAST:event_BuyerjTextField2MouseClicked
-
-    private void BuyerpurchaseOrder_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_SearchActionPerformed
-
-        BuyerjTextField2.setText("Please Enter The Order Date");
-        BuyerjTextField2.setForeground(new Color(153,153,153));
-        BuyerjTextField2.setCaretColor(new Color(255,255,255));
-    }//GEN-LAST:event_BuyerpurchaseOrder_SearchActionPerformed
 
     private void BuyerpurchaseOrder_orderTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_orderTableMouseClicked
         int selectedRow_product= BuyerpurchaseOrder_orderTable.getSelectedRow();
@@ -547,6 +534,30 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
     private void BuyerjButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerjButton7ActionPerformed
         purchaseOrder_TabbedPane.setSelectedIndex(1);
     }//GEN-LAST:event_BuyerjButton7ActionPerformed
+
+    private void BuyerpurchaseOrder_insert1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_insert1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuyerpurchaseOrder_insert1MouseEntered
+
+    private void BuyerpurchaseOrder_insert1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_insert1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuyerpurchaseOrder_insert1MouseExited
+
+    private void BuyerpurchaseOrder_insert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_insert1ActionPerformed
+        String path="src/reports/OrdersReport.jasper";
+        HashMap<String,Object> parameters=new HashMap<>();
+        parameters.put("Parameter1",BuyerpurchaseOrder_date.getText());
+        //parameters.put("Parameter2",BuyerViewItems_totalProducts.getText());
+        //parameters.put("Parameter3",BuyerviewItems_totalAmount.getText());
+
+        JRTableModelDataSource dataSource=new JRTableModelDataSource(BuyerpurchaseOrder_orderTable.getModel());
+        try {
+            JasperPrint jasperPrint=JasperFillManager.fillReport(path, parameters,dataSource);
+            JasperViewer.viewReport(jasperPrint);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_BuyerpurchaseOrder_insert1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -586,14 +597,13 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuyerjButton7;
-    private javax.swing.JTextField BuyerjTextField2;
-    private javax.swing.JButton BuyerpurchaseOrder_Search;
     private javax.swing.JButton BuyerpurchaseOrder_addItems;
     private javax.swing.JTextField BuyerpurchaseOrder_buyerID;
     private javax.swing.JTable BuyerpurchaseOrder_buyerTable;
     private javax.swing.JTextField BuyerpurchaseOrder_date;
     private javax.swing.JTextField BuyerpurchaseOrder_id;
     private javax.swing.JButton BuyerpurchaseOrder_insert;
+    private javax.swing.JButton BuyerpurchaseOrder_insert1;
     private javax.swing.JTextField BuyerpurchaseOrder_orderID;
     private javax.swing.JTable BuyerpurchaseOrder_orderTable;
     private javax.swing.JLabel addYield_CloseBtn;

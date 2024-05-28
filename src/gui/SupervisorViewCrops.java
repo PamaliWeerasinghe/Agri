@@ -105,7 +105,7 @@ public class SupervisorViewCrops extends javax.swing.JFrame {
     }
     public SupervisorViewCrops() {
         initComponents();
-        Login.dashboard.dispose();
+        //Login.dashboard.dispose();
         loadCropDetails("SELECT * FROM `block_has_crop` INNER JOIN `block`\n" +
                 "ON `block`.`b_id`=`block_has_crop`.`block_b_id` INNER JOIN `crop`\n" +
                 "ON `crop`.`c_id`=`block_has_crop`.`crop_c_id` "
@@ -167,12 +167,13 @@ public class SupervisorViewCrops extends javax.swing.JFrame {
             
             
             if(bid.next()&& cid.next()){
-                ResultSet rs=MySQL.execute("SELECT * FROM `block_has_crop` WHERE "
-                        + "`block_b_id`='"+bid.getInt("b_id")+"' AND `from_date`='"+from_date+"' AND `to_date`='"+to_date+"'"
-                        + "AND `status_id`='1' "
-                        + "AND\n" +
-                        "(`from_date`='"+from_date+"' AND `to_date`='"+to_date+"') OR "
-                        + "((`from_date` BETWEEN '"+from_date+"' AND '"+to_date+"' ) OR (`to_date` BETWEEN '"+from_date+"' AND '"+to_date+"'));");
+                
+                ResultSet rs=MySQL.execute("SELECT * FROM `block_has_crop` WHERE `block_b_id`='"+bid.getInt("b_id")+"' AND `status_id`='1'"
+                        + "AND"
+                        + "((`from_date` BETWEEN '"+from_date+"' AND '"+to_date+"') "
+                                + "OR (`to_date` BETWEEN '"+from_date+"' AND '"+to_date+"') "
+                                + "OR (`from_date`='"+from_date+"' AND `to_date`='"+to_date+"'))"
+                        + "");
                 if(rs.next()){
                     //panel for already existing crop in a block
                     CropExisting cropExists=new CropExisting();

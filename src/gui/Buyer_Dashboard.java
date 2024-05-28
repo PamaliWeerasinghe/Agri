@@ -153,6 +153,7 @@ public class Buyer_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
         new Buyer_insert().setVisible(true);
         
         
@@ -167,6 +168,7 @@ public class Buyer_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
         new Buyer_update().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -179,7 +181,8 @@ public class Buyer_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseExited
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       new Buyer_delete().setVisible(true);
+        this.dispose();
+        new Buyer_delete().setVisible(true);
        
     }//GEN-LAST:event_jButton3ActionPerformed
 

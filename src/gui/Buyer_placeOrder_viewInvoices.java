@@ -358,7 +358,7 @@ public class Buyer_placeOrder_viewInvoices extends javax.swing.JFrame {
     }//GEN-LAST:event_addYield_CloseBtnMouseClicked
 
     private void BuyerdeleteItems_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerdeleteItems_doneActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_BuyerdeleteItems_doneActionPerformed
 
     private void BuyerviewItems_printInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerviewItems_printInvoiceActionPerformed

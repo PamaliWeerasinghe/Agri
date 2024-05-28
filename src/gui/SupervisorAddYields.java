@@ -211,7 +211,8 @@ public class SupervisorAddYields extends javax.swing.JFrame {
                                 + "VALUES ('"+noOfCrops+"','"+from_date+"','"+to_date+"','"+checkAvailability.getInt("id")+"','"+yield+"')");
 
                                 //update stock
-                                 MySQL.execute("UPDATE `crop` SET `qty`=`qty`+'"+yield+"' WHERE `c_id`='"+cid+"'");
+                                 float tofloat=Float.parseFloat(yield);
+                                 MySQL.execute("UPDATE `crop` SET `qty`=`qty`+'"+tofloat+"' WHERE `c_id`='"+cid+"'");
                                 
                                 loadTable("SELECT * FROM `yield` INNER JOIN"
                 + "`block_has_crop` ON `yield`.`block_has_crop_id`=`block_has_crop`.`id` "
@@ -840,7 +841,8 @@ public class SupervisorAddYields extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         this.dispose();
-        Login.dashboard.setVisible(true);
+        //Login.dashboard.setVisible(true);
+        
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void addYield_CloseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addYield_CloseBtnMouseClicked

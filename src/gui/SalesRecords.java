@@ -220,7 +220,7 @@ public class SalesRecords extends javax.swing.JFrame {
     }//GEN-LAST:event_sales_reportMouseExited
 
     private void sales_reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sales_reportActionPerformed
-       String path="src/reports/salesReport.jasper";
+        String path="src/reports/salesReport.jasper";
         HashMap<String,Object> parameters=new HashMap<>();
         parameters.put("Parameter1",jLabel1.getText());
         //parameters.put("Parameter2",BuyerViewItems_totalProducts.getText());

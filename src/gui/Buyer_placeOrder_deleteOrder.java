@@ -30,10 +30,6 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
         BuyerorderDelete_ID = new javax.swing.JTextField();
         BuyerorderDelete_date = new javax.swing.JTextField();
         BuyerjButton4 = new javax.swing.JButton();
-        BuyerjButton5 = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        BuyerjButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -41,6 +37,7 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
         BuyerorderDelete_table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -96,49 +93,25 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
             }
         });
 
-        BuyerjButton5.setBackground(new java.awt.Color(255, 102, 102));
-        BuyerjButton5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        BuyerjButton5.setText("DELETE  PRODUCTS");
-        BuyerjButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 102, 0)));
-        BuyerjButton5.setContentAreaFilled(false);
-        BuyerjButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BuyerjButton5.setFocusPainted(false);
-        BuyerjButton5.setOpaque(true);
-        BuyerjButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                BuyerjButton5MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                BuyerjButton5MouseExited(evt);
-            }
-        });
-        BuyerjButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuyerjButton5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BuyerjButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(BuyerjButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addGap(28, 28, 28)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(BuyerorderDelete_date, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(BuyerorderDelete_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel5))
-                                    .addGap(209, 209, 209))))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BuyerjButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BuyerorderDelete_date, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BuyerorderDelete_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5))
+                                .addGap(209, 209, 209)))))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -152,45 +125,10 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BuyerorderDelete_date, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129)
+                .addGap(182, 182, 182)
                 .addComponent(BuyerjButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BuyerjButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(38, 38, 38))
         );
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setLayout(null);
-
-        jTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("Please Enter The Order Date");
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(164, 142, 109)));
-        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField2MouseClicked(evt);
-            }
-        });
-        jPanel7.add(jTextField2);
-        jTextField2.setBounds(110, 10, 370, 40);
-
-        BuyerjButton2.setBackground(new java.awt.Color(222, 191, 142));
-        BuyerjButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        BuyerjButton2.setForeground(new java.awt.Color(51, 51, 51));
-        BuyerjButton2.setText("SEARCH");
-        BuyerjButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(184, 156, 118)));
-        BuyerjButton2.setContentAreaFilled(false);
-        BuyerjButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BuyerjButton2.setFocusPainted(false);
-        BuyerjButton2.setOpaque(true);
-        BuyerjButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuyerjButton2ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(BuyerjButton2);
-        BuyerjButton2.setBounds(480, 10, 130, 40);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(102, 51, 0)));
@@ -255,9 +193,8 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -266,10 +203,8 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -286,6 +221,7 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuyerorderDelete_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerorderDelete_IDActionPerformed
@@ -313,37 +249,9 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BuyerjButton4ActionPerformed
 
-    private void BuyerjButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerjButton5MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BuyerjButton5MouseEntered
-
-    private void BuyerjButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuyerjButton5MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BuyerjButton5MouseExited
-
-    private void BuyerjButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerjButton5ActionPerformed
-//        String ordID=BuyerorderDelete_ID.getText();
-//        String date=BuyerorderDelete_date.getText();
-//
-//        addItems.deleteOrder(ordID,date);
-//        DefaultTableModel model =(DefaultTableModel) BuyerorderDelete_table.getModel();
-//        addItems.loadOrderTable(model);
-//        reset();
-    }//GEN-LAST:event_BuyerjButton5ActionPerformed
-
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
 
     }//GEN-LAST:event_jPanel3MouseClicked
-
-    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
-        jTextField2.setText(null);
-        jTextField2.setForeground(new Color(0,0,0));
-        jTextField2.setCaretColor(new Color(0,0,0));
-    }//GEN-LAST:event_jTextField2MouseClicked
-
-    private void BuyerjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerjButton2ActionPerformed
-
-    }//GEN-LAST:event_BuyerjButton2ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         dispose();
@@ -399,9 +307,7 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BuyerjButton2;
     private javax.swing.JButton BuyerjButton4;
-    private javax.swing.JButton BuyerjButton5;
     private javax.swing.JTextField BuyerorderDelete_ID;
     private javax.swing.JTextField BuyerorderDelete_date;
     private javax.swing.JTable BuyerorderDelete_table;
@@ -412,8 +318,6 @@ public class Buyer_placeOrder_deleteOrder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

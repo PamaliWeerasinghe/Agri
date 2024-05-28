@@ -63,6 +63,7 @@ public class Buyer_placeOrder_insertItems extends javax.swing.JFrame {
         BuyerpurchaseOrder_cropTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -239,6 +240,7 @@ public class Buyer_placeOrder_insertItems extends javax.swing.JFrame {
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancel.png"))); // NOI18N
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -420,11 +422,11 @@ public class Buyer_placeOrder_insertItems extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CROP ID", "CROP NAME", "QTY AVAILABLE (kg)", "UNIT PRICE"
+                "CROP ID", "CROP NAME", "QTY AVAILABLE (kg)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -450,7 +452,6 @@ public class Buyer_placeOrder_insertItems extends javax.swing.JFrame {
             BuyerpurchaseOrder_cropTable.getColumnModel().getColumn(0).setPreferredWidth(10);
             BuyerpurchaseOrder_cropTable.getColumnModel().getColumn(1).setResizable(false);
             BuyerpurchaseOrder_cropTable.getColumnModel().getColumn(2).setResizable(false);
-            BuyerpurchaseOrder_cropTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
         purchaseOrder_TabbedPane.addTab("CROP AVAILABILITY", jScrollPane3);
@@ -517,6 +518,7 @@ public class Buyer_placeOrder_insertItems extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuyerpurchaseOrder_orderIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_orderIDActionPerformed
@@ -573,7 +575,7 @@ public class Buyer_placeOrder_insertItems extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        new PurchaseOrder().setVisible(true);
+        //new PurchaseOrder().setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_jLabel8MouseClicked

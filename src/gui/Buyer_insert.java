@@ -201,6 +201,11 @@ public class Buyer_insert extends javax.swing.JFrame {
         buyer_text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         buyer_text.setText("Please Enter The Buyer Name");
         buyer_text.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(164, 142, 109)));
+        buyer_text.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                buyer_textFocusLost(evt);
+            }
+        });
         buyer_text.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buyer_textMouseClicked(evt);
@@ -385,6 +390,11 @@ public class Buyer_insert extends javax.swing.JFrame {
         DefaultTableModel dtm2=(DefaultTableModel) buyer_table.getModel();
         buyers.loadBuyers(dtm2,"SELECT * FROM `buyer` WHERE `status_id`='1' AND `name` LIKE '"+text+"%'");
     }//GEN-LAST:event_buyer_textKeyReleased
+
+    private void buyer_textFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buyer_textFocusLost
+        // TODO add your handling code here:
+        buyer_text.setText("Please Enter The Buyer Name");
+    }//GEN-LAST:event_buyer_textFocusLost
 
     /**
      * @param args the command line arguments

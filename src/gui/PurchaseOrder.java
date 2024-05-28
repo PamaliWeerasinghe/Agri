@@ -49,11 +49,9 @@ public class PurchaseOrder extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         purchaseOrder_table = new javax.swing.JTable();
-        jPanel9 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        purchaseOrder_Search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -152,7 +150,7 @@ public class PurchaseOrder extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(purchaseOrder_id, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,6 +169,7 @@ public class PurchaseOrder extends javax.swing.JFrame {
 
         addYield_CloseBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addYield_CloseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/cancel.png"))); // NOI18N
+        addYield_CloseBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addYield_CloseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addYield_CloseBtnMouseClicked(evt);
@@ -188,7 +187,7 @@ public class PurchaseOrder extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addYield_CloseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -234,70 +233,28 @@ public class PurchaseOrder extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(purchaseOrder_table);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setLayout(null);
-
-        jTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 10)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("Please Enter The Order Date");
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(164, 142, 109)));
-        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField2MouseClicked(evt);
-            }
-        });
-        jPanel9.add(jTextField2);
-        jTextField2.setBounds(90, 20, 390, 40);
-
-        purchaseOrder_Search.setBackground(new java.awt.Color(222, 191, 142));
-        purchaseOrder_Search.setFont(new java.awt.Font("Segoe UI Semibold", 1, 11)); // NOI18N
-        purchaseOrder_Search.setForeground(new java.awt.Color(51, 51, 51));
-        purchaseOrder_Search.setText("SEARCH");
-        purchaseOrder_Search.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(184, 156, 118)));
-        purchaseOrder_Search.setContentAreaFilled(false);
-        purchaseOrder_Search.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        purchaseOrder_Search.setFocusPainted(false);
-        purchaseOrder_Search.setOpaque(true);
-        purchaseOrder_Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                purchaseOrder_SearchActionPerformed(evt);
-            }
-        });
-        jPanel9.add(purchaseOrder_Search);
-        purchaseOrder_Search.setBounds(480, 20, 110, 40);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 65, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -312,6 +269,7 @@ public class PurchaseOrder extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void purchaseOrder_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseOrder_idActionPerformed
@@ -379,7 +337,7 @@ public class PurchaseOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_purchaseOrder_addItemsMouseExited
 
     private void purchaseOrder_addItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseOrder_addItemsActionPerformed
-        
+        new PurchaseOrder_insertItems().setVisible(true);
     }//GEN-LAST:event_purchaseOrder_addItemsActionPerformed
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
@@ -387,25 +345,12 @@ public class PurchaseOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void addYield_CloseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addYield_CloseBtnMouseClicked
-        
+        this.dispose();
     }//GEN-LAST:event_addYield_CloseBtnMouseClicked
 
     private void purchaseOrder_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseOrder_tableMouseClicked
         
     }//GEN-LAST:event_purchaseOrder_tableMouseClicked
-
-    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
-        jTextField2.setText(null);
-        jTextField2.setCaretColor(new Color(0, 0, 0));
-        jTextField2.setForeground(new Color(0, 0, 0));
-    }//GEN-LAST:event_jTextField2MouseClicked
-
-    private void purchaseOrder_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseOrder_SearchActionPerformed
-        
-        jTextField2.setText("Please Enter The Order Date");
-        jTextField2.setForeground(new Color(153,153,153));
-        jTextField2.setCaretColor(new Color(255,255,255));
-    }//GEN-LAST:event_purchaseOrder_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,10 +395,7 @@ public class PurchaseOrder extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton purchaseOrder_Search;
     private javax.swing.JButton purchaseOrder_addItems;
     private javax.swing.JTextField purchaseOrder_date;
     private javax.swing.JTextField purchaseOrder_id;

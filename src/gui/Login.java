@@ -13,9 +13,10 @@ import model.UserBean;
 
 
 public class Login extends javax.swing.JFrame {
-    public static Dashboard dashboard=new Dashboard();
+    //public static Dashboard dashboard=new Dashboard();
     public static UserBean userBean=new UserBean();
     public static int user_type_id;
+    //public static String uid;
    
     public Login() {
         
@@ -71,6 +72,11 @@ public class Login extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/minimize.png"))); // NOI18N
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 62, 64));
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -226,6 +232,7 @@ public class Login extends javax.swing.JFrame {
                         String mobile=rs.getString("mobile");
                         int id=rs.getInt("s_id");
                         user_type_id=rs.getInt("user_type_u_id");
+                        //uid=rs.getString("user_type_u_id");
                         //System.out.println(user_type_id);
                         
                         
@@ -238,6 +245,7 @@ public class Login extends javax.swing.JFrame {
                         //dashboard.getUserBean(userBean);
                         //Success suceed = new Success(this, true);
                         //suceed.setVisible(true);
+                        Dashboard dashboard =new Dashboard();
                         dashboard.setVisible(true);
                         
                         
@@ -271,6 +279,11 @@ public class Login extends javax.swing.JFrame {
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        this.setExtendedState(Login.ICONIFIED);
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
