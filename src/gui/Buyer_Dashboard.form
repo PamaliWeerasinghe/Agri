@@ -68,7 +68,7 @@
               <Font name="Segoe UI Semibold" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resources/add_customer.png"/>
+              <Image iconType="3" name="/resources/add_customer.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Add Buyer"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -108,7 +108,7 @@
               <Font name="Segoe UI Semibold" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resources/update_customer.png"/>
+              <Image iconType="3" name="/resources/update_customer.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Update Buyer"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -148,7 +148,7 @@
               <Font name="Segoe UI Semibold" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resources/delete_customer.png"/>
+              <Image iconType="3" name="/resources/delete_customer.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Delete Buyer"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

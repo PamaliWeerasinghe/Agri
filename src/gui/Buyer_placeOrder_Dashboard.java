@@ -44,7 +44,7 @@ public class Buyer_placeOrder_Dashboard extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/add-stock.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/add-stock.png"))); // NOI18N
         jButton1.setText("Place Order");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 194, 151)));
         jButton1.setContentAreaFilled(false);
@@ -100,7 +100,7 @@ public class Buyer_placeOrder_Dashboard extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/stock.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/stock.png"))); // NOI18N
         jButton4.setText("View Orders");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 194, 151)));
         jButton4.setContentAreaFilled(false);
@@ -242,8 +242,6 @@ public class Buyer_placeOrder_Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

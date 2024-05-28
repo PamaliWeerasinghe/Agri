@@ -12,7 +12,7 @@ public class LoadingPage extends javax.swing.JFrame {
         
     }
     private void icon(){
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Resources/leaf.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/leaf.png")));
     }
    
     @SuppressWarnings("unchecked")

@@ -544,7 +544,7 @@ public class Buyer_placeOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_BuyerpurchaseOrder_insert1MouseExited
 
     private void BuyerpurchaseOrder_insert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerpurchaseOrder_insert1ActionPerformed
-        String path="src/reports/OrdersReport.jasper";
+        String path="C:\\Users\\sisuk\\OneDrive\\Documents\\NetBeansProjects\\SoftwareProject\\src\\reports\\OrdersReport.jasper";
         HashMap<String,Object> parameters=new HashMap<>();
         parameters.put("Parameter1",BuyerpurchaseOrder_date.getText());
         //parameters.put("Parameter2",BuyerViewItems_totalProducts.getText());

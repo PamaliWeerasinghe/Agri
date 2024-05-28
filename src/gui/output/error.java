@@ -5,10 +5,7 @@
  */
 package gui.output;
 
-/**
- *
- * @author sisuk
- */
+
 public class error extends javax.swing.JFrame {
 
     /**

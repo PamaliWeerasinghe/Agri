@@ -585,7 +585,7 @@ public class Admin_updateSupplier extends javax.swing.JFrame {
     }//GEN-LAST:event_supplierUpdate_viewReportMouseExited
 
     private void supplierUpdate_viewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierUpdate_viewReportActionPerformed
-       String path="src/reports/supplier.jasper";
+       String path="C:\\Users\\sisuk\\OneDrive\\Documents\\NetBeansProjects\\SoftwareProject\\src\\reports\\supplier.jasper";
         HashMap<String,Object> parameters=new HashMap<>();
         //String supID=String.valueOf(sup_id);
         //parameters.put("Parameter1",supID);

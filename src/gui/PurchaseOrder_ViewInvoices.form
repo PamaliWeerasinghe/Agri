@@ -383,7 +383,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resources/full-box.png"/>
+              <Image iconType="3" name="/resources/full-box.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="TOTAL PRODUCTS :"/>
           </Properties>
@@ -407,7 +407,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resources/purchase-order.png"/>
+              <Image iconType="3" name="/resources/purchase-order.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="TOTAL AMOUNT :"/>
           </Properties>

@@ -183,7 +183,7 @@ public class Buyer_placeOrder_deleteItems extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/full-box.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/full-box.png"))); // NOI18N
         jLabel6.setText("TOTAL PRODUCTS :");
 
         BuyerdeleteItems_totalProducts.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -192,7 +192,7 @@ public class Buyer_placeOrder_deleteItems extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/purchase-order.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/purchase-order.png"))); // NOI18N
         jLabel10.setText("TOTAL AMOUNT :");
 
         BuyerdeleteItems_totalAmount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N

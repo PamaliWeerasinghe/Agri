@@ -104,7 +104,7 @@ public class loadAllCropsInTheBlocks extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 153, 153)));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 17)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/left-arrow.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/left-arrow.png"))); // NOI18N
         jLabel2.setText("Crops currently in the blocks");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -214,7 +214,7 @@ public class loadAllCropsInTheBlocks extends javax.swing.JFrame {
     }//GEN-LAST:event_loadAllReportMouseExited
 
     private void loadAllReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAllReportActionPerformed
-        String path="src/reports/blockCrop.jasper";
+        String path="C:\\Users\\sisuk\\OneDrive\\Documents\\NetBeansProjects\\SoftwareProject\\src\\reports\\blockCrop.jasper";
         HashMap<String,Object> parameters=new HashMap<>();
         parameters.put("Parameter1",jLabel1.getText());
         //parameters.put("Parameter2",BuyerViewItems_totalProducts.getText());

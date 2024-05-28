@@ -150,7 +150,7 @@ public class Buyer_placeOrder_viewInvoices extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/full-box.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/full-box.png"))); // NOI18N
         jLabel6.setText("TOTAL PRODUCTS :");
 
         BuyerViewItems_totalProducts.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -159,7 +159,7 @@ public class Buyer_placeOrder_viewInvoices extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/purchase-order.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/purchase-order.png"))); // NOI18N
         jLabel10.setText("TOTAL AMOUNT :");
 
         BuyerviewItems_totalAmount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -363,7 +363,7 @@ public class Buyer_placeOrder_viewInvoices extends javax.swing.JFrame {
 
     private void BuyerviewItems_printInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyerviewItems_printInvoiceActionPerformed
         //print report
-        String path="src/reports/buyerInvoice.jasper";
+        String path="C:\\Users\\sisuk\\OneDrive\\Documents\\NetBeansProjects\\SoftwareProject\\src\\reports\\buyerInvoice.jasper";
         HashMap<String,Object> parameters=new HashMap<>();
         parameters.put("Parameter1",invoice_id);
         parameters.put("Parameter2",BuyerViewItems_totalProducts.getText());

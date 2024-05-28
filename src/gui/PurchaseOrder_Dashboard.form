@@ -88,7 +88,7 @@
                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Resources/add.png"/>
+                  <Image iconType="3" name="/resources/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add GRN"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -128,7 +128,7 @@
                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Resources/receive.png"/>
+                  <Image iconType="3" name="/resources/receive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Delete GRN"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -168,7 +168,7 @@
                   <Font name="Segoe UI Semibold" size="14" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Resources/full-box.png"/>
+                  <Image iconType="3" name="/resources/full-box.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="View GRN"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

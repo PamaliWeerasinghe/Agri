@@ -68,7 +68,7 @@ public class SalesRecords extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 153, 153)));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 17)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/left-arrow.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/left-arrow.png"))); // NOI18N
         jLabel2.setText("Sales Records");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,7 +220,8 @@ public class SalesRecords extends javax.swing.JFrame {
     }//GEN-LAST:event_sales_reportMouseExited
 
     private void sales_reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sales_reportActionPerformed
-        String path="src/reports/salesReport.jasper";
+        String path="C:\\Users\\sisuk\\OneDrive\\Documents\\NetBeansProjects\\SoftwareProject\\src\\reports\\salesReport.jasper";
+        
         HashMap<String,Object> parameters=new HashMap<>();
         parameters.put("Parameter1",jLabel1.getText());
         //parameters.put("Parameter2",BuyerViewItems_totalProducts.getText());
@@ -273,11 +274,7 @@ public class SalesRecords extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JButton purchaseOrder_insert;
-    private javax.swing.JButton purchaseOrder_insert1;
-    private javax.swing.JTable purchaseOrder_table;
     private javax.swing.JTable salesTable;
     private javax.swing.JButton sales_report;
     // End of variables declaration//GEN-END:variables
