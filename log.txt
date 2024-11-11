@@ -1,0 +1,2 @@
+Nov 10, 2024 11:13:19 PM model.SupplierModel addCategory
+WARNING: java.sql.SQLSyntaxErrorException: Unknown column 'cat_name' in 'field list'
