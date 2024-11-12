@@ -1017,19 +1017,19 @@ public class SupervisorViewCrops extends javax.swing.JFrame {
         String noOfCrops=amountCrops.getText();
         String expectedYield=idField3.getText();
         
-        Map<String,String>data=new HashMap<>();
-        data.put("block",block);
-        data.put("crop", crop);
-        data.put("from",from);
-        data.put("to",to);
-        data.put("noOfCrops",noOfCrops);
-        data.put("expectedYield",expectedYield);
+//        Map<String,String>data=new HashMap<>();
+//        data.put("block",block);
+//        data.put("crop", crop);
+//        data.put("from",from);
+//        data.put("to",to);
+//        data.put("noOfCrops",noOfCrops);
+//        data.put("expectedYield",expectedYield);
         
+        String text=crop+" added to the block "+block+"\n Duration of "+from+" to "+to+"\n Number of Crops added : "+noOfCrops+"\n Expected Yield : "+expectedYield;
+//        Gson gson=new Gson();
+//        String jsonData=gson.toJson(data);
 
-        Gson gson=new Gson();
-        String jsonData=gson.toJson(data);
-
-        out =QRCode.from(jsonData).withSize(287,245).to(net.glxn.qrgen.core.image.ImageType.PNG).stream();
+        out =QRCode.from(text).withSize(287,245).to(net.glxn.qrgen.core.image.ImageType.PNG).stream();
         try {
             byte [] imageData=out.toByteArray();
             ImageIcon icon =new ImageIcon(imageData);
@@ -1037,6 +1037,7 @@ public class SupervisorViewCrops extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }                           
     }//GEN-LAST:event_addCategory_generateQRMouseClicked
 
     private void addCategory_generateQRMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCategory_generateQRMouseEntered
