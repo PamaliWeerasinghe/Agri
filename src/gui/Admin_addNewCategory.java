@@ -355,38 +355,28 @@ public class Admin_addNewCategory extends javax.swing.JFrame {
     ByteArrayOutputStream out=null;
     String newCategory_name=null;
     private void addCategory_generateQRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCategory_generateQRMouseClicked
-        //        String category=categoryAdd_combo.getSelectedItem().toString();
-//        newCategory_name=categoryAdd_name.getText();
-        String block=blockCombo.getSelectedItem().toString();
-        String crop=jComboBox1.getSelectedItem().toString();
-        
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        
-        String from=sdf.format(jDateChooser1.getDate());
-       
-        String to=sdf.format(jDateChooser2.getDate());
-        String noOfCrops=amountCrops.getText();
-        String expectedYield=idField3.getText();
+         String category=categoryAdd_combo.getSelectedItem().toString();
+        newCategory_name=categoryAdd_name.getText();
+        String date=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         
 //        Map<String,String>data=new HashMap<>();
-//        data.put("block",block);
-//        data.put("crop", crop);
-//        data.put("from",from);
-//        data.put("to",to);
-//        data.put("noOfCrops",noOfCrops);
-//        data.put("expectedYield",expectedYield);
-        
-        String text=crop+" added to the block "+block+"\n Duration of "+from+" to "+to+"\n Number of Crops added : "+noOfCrops+"\n Expected Yield : "+expectedYield;
+//        data.put("category",category);
+//        data.put("newCategory_name", newCategory_name);
+//        
 //        Gson gson=new Gson();
 //        String jsonData=gson.toJson(data);
-
-        out =QRCode.from(text).withSize(287,245).to(net.glxn.qrgen.core.image.ImageType.PNG).stream();
+        
+        String enteredText="Added new "+category+" of "+newCategory_name+" on "+date;
+        out =QRCode.from(enteredText).withSize(353, 310).to(net.glxn.qrgen.core.image.ImageType.PNG).stream();
+        //out =QRCode.from(jsonData).withSize(353, 310).to(net.glxn.qrgen.core.image.ImageType.PNG).stream();
+       
         try {
             byte [] imageData=out.toByteArray();
             ImageIcon icon =new ImageIcon(imageData);
             QROutput.setIcon(icon);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            log1.warning(e.toString());
         }
     }                           
     }//GEN-LAST:event_addCategory_generateQRMouseClicked
